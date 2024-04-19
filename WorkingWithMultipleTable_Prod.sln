@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34221.43
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithMultipleTable_Prod", "WorkingWithMultipleTable_Prod.csproj", "{CFF205CC-50AF-4D7F-8BAE-BD6E1B64649D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFF205CC-50AF-4D7F-8BAE-BD6E1B64649D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF205CC-50AF-4D7F-8BAE-BD6E1B64649D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF205CC-50AF-4D7F-8BAE-BD6E1B64649D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF205CC-50AF-4D7F-8BAE-BD6E1B64649D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44086662-2E68-40C4-8B7C-589B08F48E04}
+	EndGlobalSection
+EndGlobal

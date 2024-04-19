@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\WorkingWithMultipleTable_Prod.props" />
+</Project>
