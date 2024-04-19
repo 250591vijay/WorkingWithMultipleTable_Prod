@@ -45,7 +45,7 @@ namespace WorkingWithMultipleTable_Prod.Controllers
 
             /////////************Join Model EmployeeDepartmentSummaryViewModels(View Model)*************************///////////
 
-            // This is using Join Model
+            // This is using Join Model(LINQ)
             // var data = (from e in _context.Employees
             //           join d in _context.Departments
             //           on e.DepartmentId equals d.DepartmentId
