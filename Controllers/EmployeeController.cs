@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using WorkingWithMultipleTable_Prod.Data;
 using WorkingWithMultipleTable_Prod.Models.ViewModel;
 
@@ -11,7 +12,28 @@ namespace WorkingWithMultipleTable_Prod.Controllers
 
         public EmployeeController(ApplicationContext context)
         {
-            this._context =context;
+            this._context = context;
+        }
+        private static string EveryFirstCharacterCapital(String input)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!string.IsNullOrEmpty(input))
+            {
+               
+                var data = input.Split(',');
+                //By using for loop
+                //for (int i = 0; i < data.Length; i++)
+                //{
+                //    sb.Append(data[i].First().ToString().ToUpper() + data[i].Substring(1) + " ");
+                //}
+                // By Using ForEach loop
+                foreach (var d in data)
+                {
+                    sb.Append(d.First().ToString().ToUpper()+d.Substring(1)+" ");
+                }
+                sb.Remove(sb.Length -1 , 1);
+            }
+            return sb.ToString();
         }
         public IActionResult Index()
         {
@@ -65,11 +87,32 @@ namespace WorkingWithMultipleTable_Prod.Controllers
             // is query s object ja raha hai
             //var data = _context.EmployeeDepartmentSummaryViewModels.FromSqlRaw("select e.EmployeeId, e.FirstName, e.MiddleName,e.LastName,e.Gender,d.DepartmentId, d.DepartmentCode,                                                                       d.DepartmentName from Employees e join Departments d  on e.DepartmentId =d.DepartmentId");
 
-            //Using store Procedure to get data by using join model
+            ////Using store Procedure to get data by using join model
+            //var result = _context.EmployeeDepartmentSummaryViewModels.FromSqlRaw("exec GetEmployeeDepartmentList").ToList();
+            //return View(result);
+            //***************************************************************************************************************************
 
-            var result = _context.EmployeeDepartmentSummaryViewModels.FromSqlRaw("exec GetEmployeeDepartmentList").ToList();
+            var data = (from e in _context.Employees
+                        join d in _context.Departments
+                        on e.DepartmentId equals d.DepartmentId
+                        select new EmployeeDepartmentSummaryViewModel
+                        {
+                            EmployeeId = e.EmployeeId,
+                            //FirstName = e.FirstName,
+                            //MiddleName = e.MiddleName,
+                            //LastName = e.LastName,
+                            //Gender = e.Gender,
+                            //DepartmentCode = d.DepartmentCode,
+                            //DepartmentName = d.DepartmentName,
+                            FirstName = EveryFirstCharacterCapital(e.FirstName),
+                            MiddleName = EveryFirstCharacterCapital(e.MiddleName),
+                            LastName = EveryFirstCharacterCapital(e.LastName),
+                            Gender = EveryFirstCharacterCapital(e.Gender),
+                            DepartmentCode = d.DepartmentCode.ToUpper(),
+                            DepartmentName = EveryFirstCharacterCapital(d.DepartmentName)
+                        }).ToList();
 
-            return View(result);
+            return View(data);
         }
     }
 }
